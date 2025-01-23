@@ -25,7 +25,7 @@
  
   // import LoadingIndicator from '@/components/alerts/alertLoading.vue';
   import store from '@/store';
-  
+
   export default {
     components: {
       FormAuthVue,

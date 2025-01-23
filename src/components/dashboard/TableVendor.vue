@@ -1,8 +1,8 @@
 <template>
-  <div class="w-full max-w-md p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-8">
+  <div class="w-full max-w-md p-1 bg-white border border-gray-200 rounded-lg shadow sm:p-4">
     <div class="flex items-center justify-between mb-4">
       <h5 class="text-xl font-bold leading-none text-blue-900">
-        Transportistas sin transmitir
+        Total de placas retransmitiendo por Vendor
       </h5>
       <button v-if="showMore && vendorsDetail.length > 10" @click="toggleView"
         class="text-sm font-medium text-orange-500 hover:underline">
@@ -13,17 +13,17 @@
       <ul role="list" class="divide-y divide-gray-200">
         <li v-for="(vendor, index) in displayedVendors" :key="index" class="py-3 sm:py-4">
           <div class="flex items-center">
-            <!-- Icono del transportista -->
+
             <i class="mdi mdi-office-building-marker text-orange-500 text-2xl"></i>
             <div class="flex-1 min-w-0 ms-4">
-              <!-- Nombre del transportista -->
+
               <p class="text-sm font-medium text-gray-900 truncate">
                 {{ vendor.name }}
               </p>
             </div>
-            <!-- Cantidad de tracks -->
+   
             <div class="inline-flex items-center text-base font-semibold text-blue-900">
-              {{ vendor.tracks }} placas
+              {{ vendor.plates }} placas
             </div>
           </div>
         </li>
@@ -43,7 +43,7 @@ export default {
   },
   data() {
     return {
-      showAll: false, // Estado para alternar entre ver todos o solo 10
+      showAll: false,
     };
   },
   computed: {

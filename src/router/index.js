@@ -20,8 +20,8 @@ const router = createRouter({
                 },
 
                 {
-                    name: "route",
-                    path: "route",
+                    name: "quality",
+                    path: "quality",
                     component: () => import("@/views/QualityView.vue"),
                 },
 

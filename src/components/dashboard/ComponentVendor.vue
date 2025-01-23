@@ -1,13 +1,13 @@
 <template>
-    <div class="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow">
+    <div class="max-w-sm p-3 bg-white border border-gray-200 rounded-lg shadow">
       <div v-if="data && data.summary_card && data.summary_card.tracks !== undefined" class="space-y-4">
         <!-- Icono e información -->
         <div class="flex items-center space-x-4">
           <!-- Icono de transportistas -->
-          <i class="mdi mdi-office-building-marker text-orange-500 text-4xl"></i>
+          <i class="mdi mdi-office-building-marker text-orange-500 text-2xl"></i>
           <div>
             <!-- Número de transportistas -->
-            <h5 class="text-3xl font-bold text-blue-900">
+            <h5 class="text-2xl font-bold text-blue-900">
               {{ data.summary_card.transport_vendors.active }} / {{ data.summary_card.transport_vendors.registered }}
             </h5>
             <p class="text-gray-600 font-medium">Transportistas retransmitiendo</p>
@@ -15,9 +15,9 @@
         </div>
   
         <!-- Barra de progreso -->
-        <div class="w-full bg-gray-200 rounded-full h-4">
+        <div class="w-full bg-gray-200 rounded-full h-2">
           <div
-            class="h-4 rounded-full"
+            class="h-2 rounded-full"
             :style="{
               width: progress + '%',
               backgroundColor: progressColor

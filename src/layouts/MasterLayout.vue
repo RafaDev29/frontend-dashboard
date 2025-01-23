@@ -99,7 +99,7 @@ export default {
       const ItemsNavegation = ref([
 
           {
-              icon: "mdi mdi-domain",
+              icon: "mdi mdi-view-dashboard",
               title: "Dashboard",
               value: "dashboard",
               to: "/dashboard",
@@ -107,10 +107,10 @@ export default {
           },
          
           {
-              icon: "mdi mdi-office-building-marker",
-              title: "Compañias de transporte",
-              value: "carrier",
-              to: "/carrier",
+              icon: "mdi mdi-equalizer-outline",
+              title: "Dashboard de Calidad",
+              value: "quality",
+              to: "/quality",
               children: []
           },
       ]);
@@ -144,7 +144,7 @@ export default {
 
       const filteredItems = computed(() => {
           if (store.state.role === 'admin') {
-              return ItemsNavegation.value.filter(item => item.value === 'dashboard');
+              return ItemsNavegation.value.filter(item => item.value === 'dashboard' || item.value ==='quality');
           } else if (store.state.role === 'COMPANY') {
               return ItemsNavegation.value.filter(item => item.value === 'departures' || item.value === 'operator');
           } else if (store.state.role === 'ROOT') {

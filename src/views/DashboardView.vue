@@ -12,9 +12,11 @@
         <div class="flex justify-between space-x-1 mb-3 pb-3">
 
             <TableVendor :vendorsDetail="vendorsDetail" />
-            <TablePlates :vendorsDetail="vendorsDetail" />
-            <TableProvider :vendorsDetail="vendorsDetail" />
+            <TablePlates :detail_plates="detail_plates" />
+            <TableProvider :detail_gps_provider="detail_gps_provider" />
         </div>
+
+        <GrafitVendor :vendorsDetail="vendorsDetail" />
 
     </div>
 </template>
@@ -29,6 +31,7 @@ import ComponentProvidergps from '@/components/dashboard/ComponentProvidergps.vu
 import TableVendor from '@/components/dashboard/TableVendor.vue';
 import TableProvider from '@/components/dashboard/TableProvider.vue';
 import TablePlates from '@/components/dashboard/TablePlates.vue';
+import GrafitVendor from '@/components/dashboard/GrafitVendor.vue';
 export default {
     components: {
         componentPlots,
@@ -37,20 +40,25 @@ export default {
         ComponentProvidergps,
         TableVendor,
         TableProvider,
-        TablePlates
+        TablePlates,
+        GrafitVendor
     },
     setup() {
 
         const data = ref(null)
         const vendorsDetail = ref([])
+        const detail_plates = ref([])
+        const detail_gps_provider = ref([])
 
 
         const listDashboard = async () => {
             try {
                 const response = await listDashboardApi();
                 if (response) {
-                    data.value = response
-                    vendorsDetail.value = response.summary_table.detail_vendors
+                    data.value = response.data
+                    vendorsDetail.value = response.data.summary_table.detail_vendors
+                    detail_plates.value  = response.data.summary_table.detail_plates
+                    detail_gps_provider.value = response.data.summary_table.detail_gps_provider
                 }
             } catch (error) {
                 console.log("error al mostrar")
@@ -68,7 +76,9 @@ export default {
             ...toRefs(state),
             listDashboard,
             data,
-            vendorsDetail
+            vendorsDetail,
+            detail_plates,
+            detail_gps_provider
         }
     }
 }

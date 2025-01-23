@@ -1,13 +1,13 @@
 <template>
-    <div class="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow">
+    <div class="max-w-sm p-3 bg-white border border-gray-200 rounded-lg shadow">
         <div v-if="data && data.summary_card && data.summary_card.plates !== undefined" class="space-y-4">
             <!-- Icono e información -->
             <div class="flex items-center space-x-4">
                 <!-- Icono de placas -->
-                <i class="mdi mdi-truck text-orange-500 text-4xl"></i>
+                <i class="mdi mdi-truck text-orange-500 text-2xl"></i>
                 <div>
                     <!-- Total de placas retransmitiendo -->
-                    <h5 class="text-4xl font-bold text-blue-900">
+                    <h5 class="text-2xl font-bold text-blue-900">
                         {{ data.summary_card.plates.active }}
                     </h5>
                     <p class="text-gray-600 font-medium">Total de placas retransmitiendo</p>

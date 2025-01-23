@@ -1,12 +1,12 @@
 <template>
-    <div class="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow">
+    <div class="max-w-sm p-3 bg-white border border-gray-200 rounded-lg shadow">
         <div v-if="data && data.summary_card && data.summary_card.tracks !== undefined"
             class="flex items-center space-x-4">
             <!-- Icono usando MDI -->
             <i class="mdi mdi-signal-cellular-outline text-orange-500 text-4xl"></i>
             <div>
                 <!-- Número de tramas retransmitidas -->
-                <h5 class="text-3xl font-bold text-blue-800">
+                <h5 class="text-2xl font-bold text-blue-800">
                     {{ data.summary_card.tracks }}
                 </h5>
                 <p class="text-gray-600 font-medium">Tramas retransmitidas</p>
