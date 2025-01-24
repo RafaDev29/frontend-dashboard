@@ -1,7 +1,7 @@
 <template>
 
     <div class="mb-10 pb-10">
-        <div class="flex justify-between space-x-1 mb-3 pb-3">
+        <div class="flex justify-between space-x-10  mb-3 pb-3">
             <componentPlots :data="data" />
             <componentVendor :data="data" />
             <ComponentPlates :data="data" />
@@ -9,14 +9,22 @@
 
         </div>
 
-        <div class="flex justify-between space-x-1 mb-3 pb-3">
+        <div class="flex justify-between space-x-10  mb-3 pb-3">
 
             <TableVendor :vendorsDetail="vendorsDetail" />
+            <GrafitVendor :vendorsDetail="vendorsDetail" />
+
+        </div>
+
+
+
+        <div class="flex  justify-between space-x-10  mb-3 pb-3">
             <TablePlates :detail_plates="detail_plates" />
             <TableProvider :detail_gps_provider="detail_gps_provider" />
         </div>
 
-        <GrafitVendor :vendorsDetail="vendorsDetail" />
+
+
 
     </div>
 </template>
@@ -57,7 +65,7 @@ export default {
                 if (response) {
                     data.value = response.data
                     vendorsDetail.value = response.data.summary_table.detail_vendors
-                    detail_plates.value  = response.data.summary_table.detail_plates
+                    detail_plates.value = response.data.summary_table.detail_plates
                     detail_gps_provider.value = response.data.summary_table.detail_gps_provider
                 }
             } catch (error) {

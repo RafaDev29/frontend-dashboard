@@ -1,82 +1,102 @@
 <template>
-    <div class="p-6 bg-white border border-gray-200 rounded-lg shadow">
-      <div v-if="vendorsDetail.length > 0">
-        <h3 class="text-lg font-bold text-gray-700 mb-4">Transportistas, Tramas y Placas</h3>
-        <div class="flex items-end justify-between space-x-4">
-          <!-- Iterar sobre cada transportista -->
-          <div
-            v-for="vendor in vendorsDetail"
-            :key="vendor.name"
-            class="flex flex-col items-center space-y-2"
-          >
-            <!-- Barras de tramas -->
-            <div class="relative w-10 bg-blue-200 rounded-lg overflow-hidden">
-              <div
-                class="bg-blue-600 h-full rounded-lg"
-                :style="{ height: calculateHeight(vendor.tracks, maxTracks) }"
-              ></div>
-              <span
-                class="absolute -top-6 text-sm font-bold text-gray-700"
-                >{{ vendor.tracks }}</span
-              >
-            </div>
-            <!-- Barras de placas -->
-            <div class="relative w-10 bg-orange-200 rounded-lg overflow-hidden">
-              <div
-                class="bg-orange-500 h-full rounded-lg"
-                :style="{ height: calculateHeight(vendor.plates, maxPlates) }"
-              ></div>
-              <span
-                class="absolute -top-6 text-sm font-bold text-gray-700"
-                >{{ vendor.plates }}</span
-              >
-            </div>
-            <!-- Nombre del transportista -->
-            <span class="text-xs font-medium text-gray-600 text-center">
-              {{ vendor.name }}
-            </span>
-          </div>
-        </div>
-      </div>
-      <div v-else class="flex items-center justify-center h-20">
-        <i class="mdi mdi-loading mdi-spin text-blue-900 text-4xl"></i>
-        <span class="ml-2 text-blue-900 font-medium">Cargando...</span>
-      </div>
+  <div class=" w-full max-w  p-6 bg-white border border-gray-200 rounded-lg shadow-lg">
+    <h3 class="text-xl font-bold text-gray-800 mb-6 text-center">
+      Transportistas: Placas y Tramas
+    </h3>
+    <div v-if="vendorsDetail.length > 0" class="overflow-x-auto">
+      <!-- Gráfico -->
+      <canvas ref="barChart" class="w-[850px] h-96"></canvas>
     </div>
-  </template>
-  
-  <script>
-  export default {
-    name: "ComponentPlots",
-    props: {
-      vendorsDetail: {
-        type: Array,
-        default: () => [],
-      },
+    <div
+      v-else
+      class="flex flex-col items-center justify-center h-48 text-gray-500"
+    >
+      <i class="mdi mdi-loading mdi-spin text-blue-900 text-4xl"></i>
+      <p class="mt-2 text-lg">Cargando datos...</p>
+    </div>
+  </div>
+</template>
+
+
+
+<script>
+import { ref, watch, nextTick } from "vue";
+import { Chart } from "chart.js/auto";
+
+export default {
+  props: {
+    vendorsDetail: {
+      type: Array,
+      default: () => [],
     },
-    computed: {
-      maxTracks() {
-        // Encuentra el valor máximo de tramas para calcular proporciones
-        return Math.max(...this.vendorsDetail.map((item) => item.tracks), 1);
+  },
+  setup(props) {
+    const barChart = ref(null);
+    const chartInstance = ref(null);
+
+    const renderChart = () => {
+      const ctx = barChart.value.getContext("2d");
+      const labels = props.vendorsDetail.map((vendor) => vendor.name);
+      const tracksData = props.vendorsDetail.map((vendor) => vendor.tracks);
+
+      if (chartInstance.value) {
+        chartInstance.value.destroy(); // Destruye el gráfico anterior si existe
+      }
+
+      chartInstance.value = new Chart(ctx, {
+        type: "bar",
+        data: {
+          labels,
+          datasets: [
+            {
+              label: "Tramas retransmitidas",
+              data: tracksData,
+              backgroundColor: "#2563EB",
+              borderRadius: 5,
+              barThickness: 15,
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            legend: {
+              display: false,
+            },
+          },
+          scales: {
+            x: {
+              title: {
+                display: true,
+                text: "Transportistas",
+              },
+            },
+            y: {
+              title: {
+                display: true,
+                text: "Cantidad de tramas",
+              },
+              beginAtZero: true,
+            },
+          },
+        },
+      });
+    };
+
+    watch(
+      () => props.vendorsDetail,
+      async (newData) => {
+        if (newData.length > 0) {
+          await nextTick(); // Asegúrate de que el DOM esté listo antes de renderizar
+          renderChart();
+        }
       },
-      maxPlates() {
-        // Encuentra el valor máximo de placas para calcular proporciones
-        return Math.max(...this.vendorsDetail.map((item) => item.plates), 1);
-      },
-    },
-    methods: {
-      calculateHeight(value, maxValue) {
-        // Calcula la altura en porcentaje relativo al valor máximo
-        return `${(value / maxValue) * 100}%`;
-      },
-    },
-  };
-  </script>
-  
-  <style scoped>
-  /* Estilo adicional para ajustar las barras */
-  .relative {
-    min-height: 100px;
-  }
-  </style>
-  
+      { immediate: true } // Ejecuta el watch al inicializar el componente
+    );
+
+    return {
+      barChart,
+    };
+  },
+};
+</script>

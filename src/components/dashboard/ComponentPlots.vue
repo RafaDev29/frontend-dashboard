@@ -1,5 +1,5 @@
 <template>
-    <div class="max-w-sm p-3 bg-white border border-gray-200 rounded-lg shadow">
+    <div class="w-full p-3 bg-white border border-gray-200 rounded-lg shadow">
         <div v-if="data && data.summary_card && data.summary_card.tracks !== undefined"
             class="flex items-center space-x-4">
             <!-- Icono usando MDI -->

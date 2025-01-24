@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full max-w-md p-1 bg-white border border-gray-200 rounded-lg shadow sm:p-4">
+  <div class="w-full max-w p-1 bg-white border border-gray-200 rounded-lg shadow sm:p-4">
     <div class="flex items-center justify-between mb-4">
       <h5 class="text-xl font-bold leading-none text-blue-900">
         Placas sin transmitir

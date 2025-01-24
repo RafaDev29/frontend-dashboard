@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full max-w-md p-1 bg-white border border-gray-200 rounded-lg shadow sm:p-4">
+  <div class="w-full max-w p-1 bg-white border border-gray-200 rounded-lg shadow sm:p-4">
     <div class="flex items-center justify-between mb-4">
       <h5 class="text-xl font-bold leading-none text-blue-900">
         Provedor Gps sin transmitir
@@ -16,14 +16,14 @@
 
             <i class="mdi mdi-satellite-uplink text-orange-500 text-2xl"></i>
             <div class="flex-1 min-w-0 ms-4">
-     
+
               <p class="text-sm font-medium text-gray-900 truncate">
                 {{ vendor.name }}
               </p>
             </div>
-      
+
             <div class="inline-flex items-center text-base font-semibold text-blue-900">
-              {{ vendor.time_off }} 
+              {{ vendor.time_off }}
             </div>
           </div>
         </li>

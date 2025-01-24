@@ -1,6 +1,6 @@
 <template>
-    <div class="max-w-sm p-3 bg-white border border-gray-200 rounded-lg shadow">
-        <div v-if="data && data.summary_card && data.summary_card.plates !== undefined" class="space-y-4">
+    <div class="w-full p-3 bg-white border border-gray-200 rounded-lg shadow">
+        <div v-if="data && data.summary_card && data.summary_card.plates !== undefined" class="space-y-2">
             <!-- Icono e información -->
             <div class="flex items-center space-x-4">
                 <!-- Icono de placas -->
