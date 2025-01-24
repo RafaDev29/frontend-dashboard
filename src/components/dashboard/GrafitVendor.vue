@@ -1,5 +1,6 @@
 <template>
   <div class="w-full max-w p-6 bg-white border border-gray-300 rounded-lg shadow-md">
+    
     <h3 class="text-2xl font-semibold text-gray-800 mb-6 text-center">
       Transportistas: Placas y Tramas
     </h3>

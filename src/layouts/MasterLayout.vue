@@ -192,7 +192,7 @@ export default {
 }
 
 .v-icon {
-    color: rgba(229, 131, 4, 0.703) !important;
+    color: rgba(77, 208, 252, 0.703) !important;
 }
 
 .v-list-item-title {

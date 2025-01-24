@@ -55,15 +55,15 @@
     >
       <div class="flex items-center space-x-2 mb-1">
         <i class="mdi mdi-clock text-sm"></i>
-        <span><strong>Start:</strong> {{ tooltip.data.startTime }}</span>
+        <span><strong>Inicio:</strong> {{ tooltip.data.startTime }}</span>
       </div>
       <div class="flex items-center space-x-2 mb-1">
         <i class="mdi mdi-clock-end text-sm"></i>
-        <span><strong>End:</strong> {{ tooltip.data.endTime }}</span>
+        <span><strong>Fin:</strong> {{ tooltip.data.endTime }}</span>
       </div>
       <div class="flex items-center space-x-2">
         <i class="mdi mdi-timer text-sm "></i>
-        <span><strong>Duration:</strong> {{ tooltip.data.duration }}</span>
+        <span><strong>Duración:</strong> {{ tooltip.data.duration }}</span>
       </div>
     </div>
 
@@ -82,8 +82,8 @@
       ></i>
       <span>
         {{ detail_gps_provider.isConstant 
-          ? 'Currently transmitting' 
-          : 'Not transmitting at the moment' }}
+          ? 'Retransmitiendo actualmente' 
+          : 'No transmitiendo por el momento' }}
       </span>
     </div>
   </div>
