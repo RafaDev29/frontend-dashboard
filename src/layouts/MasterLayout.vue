@@ -29,9 +29,9 @@
                           <div
                               :class="{ 'my-2 border-l-4 border-blue-500 ml-3': !rail, 'my-2 border-l-4 border-blue-700': rail }">
                               <router-link :to="item.to" v-for="item in itemNavegation.children" :key="item.value"
-                                  class="rounded-md">
+                                  class="rounded-md ">
                                   <v-list-item @click="selectItem(item.to)" :prepend-icon="item.icon"
-                                      :title="item.title" :value="item.value" active-class="blue-white-3 rounded-md"
+                                      :title="item.title" :value="item.value" active-class="color-black rounded-md"
                                       :class="{ 'selected-item-white': selectedItem === item.to }"></v-list-item>
                               </router-link>
                           </div>
@@ -191,12 +191,18 @@ export default {
 
 }
 
+.v-icon {
+    color: rgba(229, 131, 4, 0.703) !important;
+}
+
 .v-list-item-title {
+    color: white ;
   font-size: 12px !important;
 }
 
 .v-list-item-subtitle {
   font-size: 13px !important;
+  color: white ;
 }
 
 .section_main {

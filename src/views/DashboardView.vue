@@ -30,7 +30,7 @@
 </template>
 
 <script>
-import { reactive, toRefs, ref, onMounted } from 'vue'
+import { reactive, toRefs, ref, onMounted, onBeforeUnmount } from 'vue'
 import componentPlots from '@/components/dashboard/ComponentPlots.vue'
 import componentVendor from '@/components/dashboard/ComponentVendor.vue'
 import { listDashboardApi } from '@/api/DashboardService'
@@ -57,7 +57,7 @@ export default {
         const vendorsDetail = ref([])
         const detail_plates = ref([])
         const detail_gps_provider = ref([])
-
+        let intervalId = null;
 
         const listDashboard = async () => {
             try {
@@ -78,7 +78,16 @@ export default {
             count: 0,
         })
 
-        onMounted(listDashboard)
+        onMounted(() => {
+            listDashboard();
+            intervalId = setInterval(listDashboard, 10000);
+        });
+
+        onBeforeUnmount(() => {
+            if (intervalId) {
+                clearInterval(intervalId);
+            }
+        });
 
         return {
             ...toRefs(state),
