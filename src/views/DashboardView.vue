@@ -80,7 +80,7 @@ export default {
 
         onMounted(() => {
             listDashboard();
-            intervalId = setInterval(listDashboard, 10000);
+            intervalId = setInterval(listDashboard, 100000);
         });
 
         onBeforeUnmount(() => {
